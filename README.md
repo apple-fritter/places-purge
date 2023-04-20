@@ -11,3 +11,7 @@ The resulting `places.sqlite` file can be used as a starting point for creating 
 * It only clears the Firefox history, bookmarks, and related data from the `places.sqlite` file, and does not address any other data or settings that a user may want to backup.
 * The script assumes that Firefox is installed in the default location `~/.mozilla/firefox`, so it may not work if Firefox is installed in a different directory.
 * The script does not make a backup of the Firefox data and does not prompt the user for confirmation before deleting. If the script is run accidentally, it may lead to data loss.
+
+## License
+
+This script is released under the [MIT License](LICENSE).
