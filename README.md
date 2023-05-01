@@ -3,9 +3,16 @@ This is a bash script that facilitates creation of a skeleton backup of the Fire
 
 ## What it does and how it works:
 * The script first finds the location of the `places.sqlite` file where Firefox stores its browsing history, bookmarks, and other information. It then checks whether Firefox is currently running and if so, stops the program.
-* Next, the script uses the `sqlite3` command-line tool to remove the contents of the `places.sqlite` file, effectively creating a blank slate for the next time Firefox is launched. Specifically, the script deletes all records from several tables in the `places.sqlite` database, including the `moz_historyvisits`, `moz_inputhistory`, `moz_bookmarks`, `moz_bookmarks_roots`, `moz_keywords`, and `moz_places` tables.
+* Next, the script uses the `sqlite3` command-line tool to remove the contents of the `places.sqlite` file, effectively creating a blank slate for the next time Firefox is launched and can be used as a starting point for creating a backup of Firefox configuration, as it will not contain any sensitive user data.
 
-The resulting `places.sqlite` file can be used as a starting point for creating a backup of Firefox configuration, as it will not contain any sensitive user data.
+The following will be left in the places.sqlite file:
+
+* The database structure itself, including the table schemas and indexes.
+* Empty tables: All the tables in the places database, including moz_historyvisits, moz_inputhistory, moz_bookmarks, moz_bookmarks_roots, moz_keywords, moz_places, moz_anno_attributes, moz_annos, moz_items_annos, moz_meta, moz_origins, moz_sync, and sqlite_sequence, will still exist but will be empty.
+
+Essentially, the script will remove all the data within the tables but leave the tables and database structure intact. This means that the places.sqlite file will still have the necessary components for Firefox to function properly, but it will no longer contain any specific browsing history, bookmarks, or other related data.
+
+It's important to note that while the script removes the data from the tables, it does not guarantee complete erasure of the data from the physical storage of the places.sqlite file. If you have concerns about data privacy or security, you may consider additional steps or utilities to securely wipe the file or utilize Firefox's built-in data-clearing options.
 
 ## Some limitations of this script include:
 * It only clears the Firefox history, bookmarks, and related data from the `places.sqlite` file, and does not address any other data or settings that a user may want to backup.
